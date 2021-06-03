@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.repository }}:${{ steps.prepare.outputs.version }}
+          tags: derpychap/box86-docker:${{ steps.prepare.outputs.version }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
