@@ -12,7 +12,7 @@ FROM box86-docker:latest
 
 RUN apt update && apt install wget
 
-RUN wget -O server.tar.bz2 https://files.teamspeak-services.com/releases/server/3.13.5/teamspeak3-server_linux_x86-3.13>
+RUN wget -O server.tar.bz2 https://files.teamspeak-services.com/releases/server/3.13.5/teamspeak3-server_linux_x86-3.13.5.tar.bz2
 
 EXPOSE 9987/udp 10011 30033
 
