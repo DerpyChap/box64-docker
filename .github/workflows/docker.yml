@@ -32,10 +32,12 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/arm/v7
           push: true
           tags: derpychap/box86-docker:${{ steps.prepare.outputs.version }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/arm/v7
           push: true
           tags: docker.pkg.github.com/${{ github.repository }}/box86-docker:${{ steps.prepare.outputs.version }}
