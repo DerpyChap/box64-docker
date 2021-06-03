@@ -44,4 +44,4 @@ jobs:
         with:
           platforms: linux/arm/v7
           push: true
-          tags: docker.pkg.github.com/${{ github.repository }}/box86-docker:${{ steps.prepare.outputs.version }}
+          tags: docker.pkg.github.com/derpychap/box86-docker/box86-docker:${{ steps.prepare.outputs.version }}
