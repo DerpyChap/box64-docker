@@ -8,8 +8,14 @@ jobs:
       packages: write
       contents: read
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Prepare
+        id: prepare
+        run: |
+          VERSION=`git rev-parse --short HEAD`
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          fi
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -25,9 +31,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: derpychap/box86-docker:${{ github.ref }}
+          tags: ${{ github.repository }}:${{ steps.prepare.outputs.version }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: docker.pkg.github.com/${{ github.repository }}/my-image:${{ github.ref }}
+          tags: docker.pkg.github.com/${{ github.repository }}/box86-docker:${{ steps.prepare.outputs.version }}
