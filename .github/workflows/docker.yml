@@ -1,7 +1,5 @@
 name: Publish Docker image
-on:
-  release:
-    types: [push]
+on: [ push ]
 jobs:
   push_to_registries:
     name: Push Docker image to multiple registries
@@ -27,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: my-docker-hub-namespace/my-docker-hub-repository:${{ github.ref }}
+          tags: derpychap/box86-docker:${{ github.ref }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
