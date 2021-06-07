@@ -27,21 +27,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Log in to GitHub Docker Registry
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Docker Hub
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_REGISTRY_TOKEN }}
+      - name: Build and Push to Registries
         uses: docker/build-push-action@v2
         with:
           platforms: linux/arm/v7
           push: true
-          tags: derpychap/box86-docker:${{ steps.prepare.outputs.version }}
-      - name: Build container image
-        uses: docker/build-push-action@v2
-        with:
-          platforms: linux/arm/v7
-          push: true
-          tags: docker.pkg.github.com/derpychap/box86-docker/box86-docker:${{ steps.prepare.outputs.version }}
+          tags: |
+            ${{ github.repository }:${{ steps.prepare.outputs.version }}
+            ${{ github.repository }:latest
+            ghcr.io/${{ github.repository }:${{ steps.prepare.outputs.version }}
+            ghcr.io/${{ github.repository }:latest
