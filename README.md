@@ -1,4 +1,4 @@
-# box86-docker
+# box64-docker
 Simple Dockerfile to run 64-bit x86 binaries on ARMv8 CPUs within Docker using Box64.
 
 ## Usage
