@@ -5,7 +5,7 @@ Simple Dockerfile to run 64-bit x86 binaries on ARMv8 CPUs within Docker using B
 Create a new image using `box64-docker` as a baseline. For your `CMD` be sure to call `box64` and pass your binary to it.
 
 ## Example
-A quick and dirty TeamSpeak server using `box63-docker` as a PoC of sorts (please don't actually use this):
+A quick and dirty TeamSpeak server using `box64-docker` as a PoC of sorts (please don't actually use this):
 
 ```dockerfile
 FROM box64-docker:latest
